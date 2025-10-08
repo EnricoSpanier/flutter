@@ -190,7 +190,7 @@ class _MainContentCard extends StatelessWidget {
             children: <Widget>[
               Image.network(
                 homePageData.mainImageUrl,
-                fit: BoxFit.contain, // Changed to BoxFit.contain to show the entire image
+                fit: BoxFit.cover, // Changed to BoxFit.contain to show the entire image
                 width: double.infinity,
                 height: double.infinity,
                 errorBuilder: (BuildContext context, Object error,
