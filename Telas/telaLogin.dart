@@ -1,6 +1,13 @@
 // 8. Tela de Login
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,27 +44,39 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             SizedBox(
-              width: double.infinity,
+              width: 150.0, // Botão menor
               child: ElevatedButton(
                 onPressed: () {
-                  // TODO: Implementar lógica de login
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0), // Altura reduzida
                 ),
                 child: const Text('Logar'),
               ),
             ),
             const SizedBox(height: 10.0),
+            Row(
+              children: <Widget>[
+                Checkbox(
+                  value: _rememberMe,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _rememberMe = value ?? false;
+                    });
+                  },
+                ),
+                const Text('lembrar de mim'),
+              ],
+            ),
+            const SizedBox(height: 10.0),
             TextButton(
               onPressed: () {
-                // TODO: Implementar recuperação de senha
               },
               child: const Text(
                 'esqueci minha senha',
@@ -66,7 +85,10 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                // TODO: Implementar cadastro
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                );
               },
               child: const Text(
                 'não tem conta? cadastre-se',
