@@ -18,7 +18,7 @@ class HomePageData extends ChangeNotifier {
             'https://www.gstatic.com/flutter-onestack-prototype/genui/example_1.jpg',
         mainImageUrl =
             'https://i.imgur.com/xNdRovc.jpeg', // IMAGEM QUE QUERO AUMENTAR
-        mainImageOverlayText = 'AIRSOFT';
+        mainImageOverlayText = '';
 }
 
 // 2. O Widget Raiz (Root Widget)
@@ -198,7 +198,7 @@ class _MainContentCard extends StatelessWidget {
             children: <Widget>[
               Image.network(
                 homePageData.mainImageUrl,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,
                 errorBuilder: (BuildContext context, Object error,
@@ -591,14 +591,169 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomePageData homePageData = Provider.of<HomePageData>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tela Principal'),
+        title: Text(homePageData.siteName),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: (String value) {
+              if (value == 'Editar Perfil') {
+
+              } else if (value == 'Criar Evento') {
+              } else if (value == 'Deslogar') {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                value: 'Editar Perfil',
+                child: Text('Editar Perfil'),
+              ),
+              const PopupMenuItem<String>(
+                value: 'Criar Evento',
+                child: Text('Criar Evento'),
+              ),
+              const PopupMenuItem<String>(
+                value: 'Deslogar',
+                child: Text('Deslogar'),
+              ),
+            ],
+            child: Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(homePageData.userAvatarUrl),
+                radius: 18,
+              ),
+            ),
+          ),
+        ],
       ),
-      body: const Center(
-        child: Text(
-          'Tela principal após login (em construção)',
-          style: TextStyle(fontSize: 24.0),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundImage: NetworkImage(homePageData.userAvatarUrl),
+                    backgroundColor: Colors.transparent,
+                  ),
+                  const SizedBox(width: 12.0),
+                  Text(
+                    homePageData.userName,
+                    style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Card(
+                elevation: 4.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: SizedBox(
+                  height: 400.0,
+                  width: double.infinity,
+                  child: Stack(
+                    children: <Widget>[
+                      Image.network(
+                        'https://i.imgur.com/RCRutFm.png',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                        errorBuilder: (BuildContext context, Object error,
+                                StackTrace? stackTrace) =>
+                            const Center(child: Icon(Icons.error)),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: Text(
+                            '',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 48.0,
+                              fontWeight: FontWeight.bold,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  blurRadius: 5.0,
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: const Offset(2.0, 2.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      IconButton (
+                        icon: const Icon(Icons.timer_outlined, size: 28),
+                        onPressed: () {
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.share, size: 28),
+                        onPressed: () {
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.star_border, size: 28),
+                        onPressed: () {
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.purple.shade100,
+                          foregroundColor: Colors.purple.shade700,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
+                        ),
+                        child: const Text('saber mais'),
+                      ),
+                      const SizedBox(width: 8.0),
+                      IconButton(
+                        icon: const Icon(Icons.more_vert, size: 28),
+                        onPressed: () {
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
