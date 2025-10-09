@@ -17,7 +17,7 @@ class HomePageData extends ChangeNotifier {
         userAvatarUrl =
             'https://www.gstatic.com/flutter-onestack-prototype/genui/example_1.jpg',
         mainImageUrl =
-            'https://i.imgur.com/xNdRovc.jpeg', // IMAGEM QUE QUERO AUMENTAR DE TAMANHO
+            'https://i.imgur.com/xNdRovc.jpeg',
         mainImageOverlayText = '';
 }
 
@@ -289,3 +289,4 @@ class _ActionButtonsSection extends StatelessWidget {
     );
   }
 }
+
