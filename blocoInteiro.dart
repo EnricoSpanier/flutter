@@ -18,7 +18,7 @@ class HomePageData extends ChangeNotifier {
             'https://www.gstatic.com/flutter-onestack-prototype/genui/example_1.jpg',
         mainImageUrl =
             'https://i.imgur.com/xNdRovc.jpeg', // IMAGEM QUE QUERO AUMENTAR
-        mainImageOverlayText = '';
+        mainImageOverlayText = 'AIRSOFT';
 }
 
 // 2. O Widget Raiz (Root Widget)
@@ -487,27 +487,7 @@ class _TopNavigationBarLogin extends StatelessWidget {
   }
 }
 
-// 10. Tela Principal (após login)
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tela Principal'),
-      ),
-      body: const Center(
-        child: Text(
-          'Tela principal após login (em construção)',
-          style: TextStyle(fontSize: 24.0),
-        ),
-      ),
-    );
-  }
-}
-
-// 11. Tela de Cadastro
+// 10. Tela de Cadastro
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
@@ -599,6 +579,26 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// 11. Tela Principal (após login)
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tela Principal'),
+      ),
+      body: const Center(
+        child: Text(
+          'Tela principal após login (em construção)',
+          style: TextStyle(fontSize: 24.0),
         ),
       ),
     );
