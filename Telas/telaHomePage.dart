@@ -12,20 +12,20 @@ class HomePageData extends ChangeNotifier {
 
   HomePageData()
       : siteName = 'Organizador de Eventos',
-        navLinks = const ['Procurar Evento', 'Gerenciar eventos'],
+        navLinks = const ['Procurar evento', 'Gerenciar eventos'],
         userName = 'Usuário 982',
         userAvatarUrl =
             'https://www.gstatic.com/flutter-onestack-prototype/genui/example_1.jpg',
         mainImageUrl =
-            'https://i.imgur.com/xNdRovc.jpeg',
-        mainImageOverlayText = '';
+            'https://i.imgur.com/xNdRovc.jpeg', // IMAGEM QUE QUERO AUMENTAR
+        mainImageOverlayText = 'AIRSOFT';
 }
 
+// 2. O Widget Raiz (Root Widget)
 void main() {
   runApp(const MyApp());
 }
 
-// 2. O Widget Raiz (Root Widget)
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// 3. O Widget de Tela (Home Screen)
+// 3. Homepage sem login
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -70,6 +70,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// 4. Widget: Barra de Navegação Superior
 class _TopNavigationBar extends StatelessWidget {
   final HomePageData homePageData;
 
@@ -93,33 +94,38 @@ class _TopNavigationBar extends StatelessWidget {
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: homePageData.navLinks
-                    .map<Widget>(
-                      (String link) => TextButton(
-                        onPressed: () {
-                          // TODO: Implement navigation for page links
-                        },
-                        child: Text(
-                          link,
-                          style: const TextStyle(color: Colors.black87),
-                        ),
+                children: homePageData.navLinks.map<Widget>(
+                  (link) {
+                    return TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LoginScreen()),
+                        );
+                      },
+                      child: Text(
+                        link,
+                        style: const TextStyle(color: Colors.black87),
                       ),
-                    )
-                    .toList(),
+                    );
+                  },
+                ).toList(),
               ),
             ),
-            ElevatedButton(
+            TextButton(
               onPressed: () {
-                // TODO: Implement login action
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
               },
-              style: ElevatedButton.styleFrom(
+              style: TextButton.styleFrom(
                 backgroundColor: Colors.black87,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               ),
               child: const Text('Login'),
             ),
@@ -140,6 +146,7 @@ class _TopNavigationBar extends StatelessWidget {
   }
 }
 
+// 5. Widget: Seção de Perfil do Usuário
 class _UserProfileSection extends StatelessWidget {
   final HomePageData homePageData;
 
@@ -155,7 +162,7 @@ class _UserProfileSection extends StatelessWidget {
           CircleAvatar(
             radius: 24,
             backgroundImage: NetworkImage(homePageData.userAvatarUrl),
-            backgroundColor: Colors.transparent, // In case image fails to load
+            backgroundColor: Colors.transparent,
           ),
           const SizedBox(width: 12.0),
           Text(
@@ -168,6 +175,7 @@ class _UserProfileSection extends StatelessWidget {
   }
 }
 
+// 6. Widget: Card de Conteúdo Principal (com imagem ajustada)
 class _MainContentCard extends StatelessWidget {
   final HomePageData homePageData;
 
@@ -182,15 +190,15 @@ class _MainContentCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        clipBehavior: Clip.antiAlias, // Ensures content is clipped to card shape
+        clipBehavior: Clip.antiAlias,
         child: SizedBox(
-          height: 400.0, // Increased height to accommodate the full image
+          height: 400.0,
           width: double.infinity,
           child: Stack(
             children: <Widget>[
               Image.network(
                 homePageData.mainImageUrl,
-                fit: BoxFit.cover, // Changed to BoxFit.contain to show the entire image
+                fit: BoxFit.contain,
                 width: double.infinity,
                 height: double.infinity,
                 errorBuilder: (BuildContext context, Object error,
@@ -226,6 +234,7 @@ class _MainContentCard extends StatelessWidget {
   }
 }
 
+// 7. Widget: Seção de Botões de Ação
 class _ActionButtonsSection extends StatelessWidget {
   const _ActionButtonsSection();
 
@@ -241,19 +250,28 @@ class _ActionButtonsSection extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.timer_outlined, size: 28),
                 onPressed: () {
-                  // TODO: Implement timer action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  );
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.share, size: 28),
                 onPressed: () {
-                  // TODO: Implement share action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  );
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.star_border, size: 28),
                 onPressed: () {
-                  // TODO: Implement favorite action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  );
                 },
               ),
             ],
@@ -262,7 +280,7 @@ class _ActionButtonsSection extends StatelessWidget {
             children: <Widget>[
               ElevatedButton(
                 onPressed: () {
-                  // TODO: Implement "Saber Mais" action
+                  _showEventDetails(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple.shade100,
@@ -279,7 +297,10 @@ class _ActionButtonsSection extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.more_vert, size: 28),
                 onPressed: () {
-                  // TODO: Implement more options action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  );
                 },
               ),
             ],
@@ -288,5 +309,48 @@ class _ActionButtonsSection extends StatelessWidget {
       ),
     );
   }
-}
 
+  void _showEventDetails(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Detalhes do Evento'),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: const <Widget>[
+                Text('Descrição:'),
+                Text('Nome do Evento: Treinamento Básico Airsoft'),
+                Text('Organizadores: EquipeHard'),
+                Text('Data do evento: 18/05/2025'),
+                Text('Local do evento: Vacaria/RS'),
+                Text('Tipo de evento: privado (Pago)'),
+                Text('Nota do organizador: ...'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Voltar'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+              child: const Text('Inscrever-se'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
