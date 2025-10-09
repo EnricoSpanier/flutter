@@ -18,7 +18,7 @@ class HomePageData extends ChangeNotifier {
             'https://www.gstatic.com/flutter-onestack-prototype/genui/example_1.jpg',
         mainImageUrl =
             'https://i.imgur.com/xNdRovc.jpeg', // IMAGEM QUE QUERO AUMENTAR
-        mainImageOverlayText = 'AIRSOFT';
+        mainImageOverlayText = '';
 }
 
 // 2. O Widget Raiz (Root Widget)
@@ -356,8 +356,15 @@ class _ActionButtonsSection extends StatelessWidget {
 }
 
 // 8. Tela de Login
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -394,27 +401,39 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             SizedBox(
-              width: double.infinity,
+              width: 150.0, // Botão menor
               child: ElevatedButton(
                 onPressed: () {
-                  // TODO: Implementar lógica de login
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0), // Altura reduzida
                 ),
                 child: const Text('Logar'),
               ),
             ),
             const SizedBox(height: 10.0),
+            Row(
+              children: <Widget>[
+                Checkbox(
+                  value: _rememberMe,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _rememberMe = value ?? false;
+                    });
+                  },
+                ),
+                const Text('lembrar de mim'),
+              ],
+            ),
+            const SizedBox(height: 10.0),
             TextButton(
               onPressed: () {
-                // TODO: Implementar recuperação de senha
               },
               child: const Text(
                 'esqueci minha senha',
@@ -423,7 +442,10 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                // TODO: Implementar cadastro
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                );
               },
               child: const Text(
                 'não tem conta? cadastre-se',
@@ -456,6 +478,124 @@ class _TopNavigationBarLogin extends StatelessWidget {
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// 10. Tela Principal (após login)
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tela Principal'),
+      ),
+      body: const Center(
+        child: Text(
+          'Tela principal após login (em construção)',
+          style: TextStyle(fontSize: 24.0),
+        ),
+      ),
+    );
+  }
+}
+
+// 11. Tela de Cadastro
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text('Cadastro'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 20.0),
+            const Text(
+              'Cadastro',
+              style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20.0),
+            const Text('Nome completo'),
+            TextField(
+              decoration: const InputDecoration(
+                hintText: 'Seu nome completo',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            const Text('Email'),
+            TextField(
+              decoration: const InputDecoration(
+                hintText: 'seuemail@example.com',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            const Text('Senha'),
+            TextField(
+              obscureText: true,
+              decoration: const InputDecoration(
+                hintText: 'Senha',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            const Text('Confirmar senha'),
+            TextField(
+              obscureText: true,
+              decoration: const InputDecoration(
+                hintText: 'Confirme sua senha',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                ),
+                child: const Text('Completar cadastro'),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+              child: const Text(
+                'Já tem uma conta? Faça login',
+                style: TextStyle(color: Colors.purple),
               ),
             ),
           ],
