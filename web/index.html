@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <title>Flutter Web App</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <script src="flutter.js" defer></script>
+    <style>
+      /* Loader simples para evitar tela totalmente branca */
+      #loader { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-family: sans-serif; color: #555; }
+      #loader.hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <noscript>Este app requer JavaScript habilitado.</noscript>
+    <div id="loader">Carregando aplicativo…</div>
+    <script>
+      window.addEventListener('load', function () {
+        const loader = document.getElementById('loader');
+        try {
+          if (window._flutter && window._flutter.loader) {
+            window._flutter.loader
+              .loadEntrypoint({})
+              .then(function (engineInitializer) { return engineInitializer.initializeEngine(); })
+              .then(function (appRunner) { loader.classList.add('hidden'); return appRunner.runApp(); })
+              .catch(function (e) { console.error('Flutter bootstrap error:', e); loader.textContent = 'Falha ao iniciar o app.'; });
+          } else {
+            console.error('Flutter loader not found.');
+            loader.textContent = 'Loader do Flutter não encontrado.';
+          }
+        } catch (e) {
+          console.error(e);
+          loader.textContent = 'Erro inesperado ao iniciar o app.';
+        }
+      });
+    </script>
+  </body>
+  </html>

@@ -1,0 +1,28 @@
+# VCS
+.git
+.gitignore
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Flutter/Dart tooling
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+
+# Build outputs
+build/
+
+# Native platform folders not needed for Flutter Web image
+android/
+ios/
+linux/
+macos/
+windows/
+
+# Misc
+*.iml
+*.log
