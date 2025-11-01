@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'telaPrincipal.dart';
-import 'telaLogin.dart';
-
 // 10. Tela de Cadastro
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

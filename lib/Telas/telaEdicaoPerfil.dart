@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'telaPrincipal.dart';
-import 'telaHomePage.dart';
-
 // 12. Tela de Edição de Perfil
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -140,7 +135,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira um email';
                     }
-                    if (!RegExp(r'^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
                       return 'Por favor, insira um email válido';
                     }
                     return null;

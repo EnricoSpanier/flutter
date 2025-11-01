@@ -1,4 +1,4 @@
-//16. Tela de Inscrição de evento
+// 16. Tela de Inscrição de evento
 class EventRegistrationScreen extends StatefulWidget {
   final Map<String, String> event;
 

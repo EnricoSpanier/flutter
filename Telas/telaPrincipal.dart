@@ -165,11 +165,13 @@ class MainScreen extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: const Icon(Icons.share, size: 28),
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                       ),
                       IconButton(
                         icon: const Icon(Icons.star_border, size: 28),
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                       ),
                     ],
                   ),
@@ -193,7 +195,8 @@ class MainScreen extends StatelessWidget {
                       const SizedBox(width: 8.0),
                       IconButton(
                         icon: const Icon(Icons.more_vert, size: 28),
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                       ),
                     ],
                   ),
@@ -239,7 +242,18 @@ class MainScreen extends StatelessWidget {
                 Navigator.of(context).pop();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => const EventRegistrationScreen(
+                      event: {
+                        'title': 'OPERAÇÃO TROIA III',
+                        'date': '25/10/2025',
+                        'location': 'Vacaria/RS',
+                        'type': 'Privado (Pago)',
+                        'description': 'Treinamento avançado de táticas airsoft.',
+                        'imageUrl': 'https://i.imgur.com/8oL5V4K.jpeg',
+                      },
+                    ),
+                  ),
                 );
               },
               child: const Text('Inscrever-se'),

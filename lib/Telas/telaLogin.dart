@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'telaPrincipal.dart';
-import 'telaCadastro.dart';
-import 'telaHomePage.dart';
-
 // 8. Tela de Login
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -82,7 +76,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 10.0),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+              },
               child: const Text(
                 'esqueci minha senha',
                 style: TextStyle(color: Colors.purple),

@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'telaPrincipal.dart';
-
 // 16. Tela de Inscrição de evento
 class EventRegistrationScreen extends StatefulWidget {
   final Map<String, String> event;
@@ -106,15 +103,15 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                   ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Por favor, insira seu email';
-                      }
-                      if (!RegExp(r'^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                        return 'Por favor, insira um email válido';
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, insira seu email';
+                    }
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                      return 'Por favor, insira um email válido';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(

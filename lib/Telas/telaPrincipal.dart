@@ -1,12 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'telaHomePage.dart';
-import 'telaPesquisarEvento.dart';
-import 'telaGerenciarEventos.dart';
-import 'telaEdicaoPerfil.dart';
-import 'telaCriacaoEvento.dart';
-import 'telaLogin.dart';
-
 // 11. Tela Principal (após login)
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -135,7 +126,8 @@ class MainScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: double.infinity,
-                        errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) =>
+                        errorBuilder: (BuildContext context, Object error,
+                                StackTrace? stackTrace) =>
                             const Center(child: Icon(Icons.error)),
                       ),
                       Align(
@@ -173,11 +165,13 @@ class MainScreen extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: const Icon(Icons.share, size: 28),
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                       ),
                       IconButton(
                         icon: const Icon(Icons.star_border, size: 28),
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                       ),
                     ],
                   ),
@@ -193,14 +187,16 @@ class MainScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
                         ),
                         child: const Text('saber mais'),
                       ),
                       const SizedBox(width: 8.0),
                       IconButton(
                         icon: const Icon(Icons.more_vert, size: 28),
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                       ),
                     ],
                   ),
@@ -246,7 +242,18 @@ class MainScreen extends StatelessWidget {
                 Navigator.of(context).pop();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => const EventRegistrationScreen(
+                      event: {
+                        'title': 'OPERAÇÃO TROIA III',
+                        'date': '25/10/2025',
+                        'location': 'Vacaria/RS',
+                        'type': 'Privado (Pago)',
+                        'description': 'Treinamento avançado de táticas airsoft.',
+                        'imageUrl': 'https://i.imgur.com/8oL5V4K.jpeg',
+                      },
+                    ),
+                  ),
                 );
               },
               child: const Text('Inscrever-se'),

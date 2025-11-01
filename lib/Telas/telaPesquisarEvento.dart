@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 // 14. Tela de Pesquisa de Eventos
 class SearchEventScreen extends StatefulWidget {
   const SearchEventScreen({super.key});

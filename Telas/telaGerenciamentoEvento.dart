@@ -1,4 +1,4 @@
-// 15. Tela de Gerenciamento de Eventos (Placeholder)
+// 15. Tela de Gerenciamento de Eventos
 class ManageEventsScreen extends StatefulWidget {
   const ManageEventsScreen({super.key});
 
