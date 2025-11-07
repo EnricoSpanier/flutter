@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Evita caches persistentes: tentamos remover service workers e caches antigos antes de carregar o Flutter -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <script>
+      // Unregister any existing service worker and clear caches (helpful during development)
+      (function () {
+        try {
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (regs) {
+              for (const r of regs) {
+                try { r.unregister(); } catch (e) { /* ignore */ }
+              }
+            }).catch(function(){});
+          }
+          if (window.caches && caches.keys) {
+            caches.keys().then(function (names) {
+              return Promise.all(names.map(function (n) { return caches.delete(n); }));
+            }).catch(function(){});
+          }
+        } catch (e) {
+          /* não crítico */
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     <title>Flutter Web App</title>
     <link rel="icon" type="image/png" href="favicon.png" />
-    <script src="flutter.js" defer></script>
+    <script>
+      // Carrega flutter.js com cache-busting (timestamp) para evitar servir arquivos JavaScript antigos do cache
+      (function () {
+        var cacheBuster = '?v=' + Date.now();
+        var s = document.createElement('script');
+        s.src = 'flutter.js' + cacheBuster;
+        s.defer = true;
+        document.head.appendChild(s);
+      })();
+    </script>
     <style>
       /* Loader simples para evitar tela totalmente branca */
       #loader { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-family: sans-serif; color: #555; }
