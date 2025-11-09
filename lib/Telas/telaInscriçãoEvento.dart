@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'telaPrincipal.dart';
+
 // 16. Tela de Inscrição de evento
 class EventRegistrationScreen extends StatefulWidget {
   final Map<String, String> event;
