@@ -164,6 +164,11 @@ class MainScreen extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       IconButton(
+                        icon: const Icon(Icons.timer_outlined, size: 28),
+                        onPressed: () {
+                        },
+                      ),
+                      IconButton(
                         icon: const Icon(Icons.share, size: 28),
                         onPressed: () {
                         },
