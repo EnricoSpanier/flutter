@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'telaPrincipal.dart';
+import 'telaHomePage.dart';
+
 // 12. Tela de Edição de Perfil
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
