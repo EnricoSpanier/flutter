@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'telaPrincipal.dart';
+
 // 13. Tela de Criação de Evento
 class CreateEventScreen extends StatefulWidget {
   const CreateEventScreen({super.key});
