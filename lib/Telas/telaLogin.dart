@@ -1,3 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'telaHomePage.dart';
+
+
+import 'telaPrincipal.dart';     // MainScreen
+import 'telaCadastro.dart';       // RegisterScreen
+
 // 8. Tela de Login
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -44,18 +52,18 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 20.0),
             SizedBox(
-              width: 150.0, // Botão menor
+              width: 150.0,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const MainScreen()),
+                    MaterialPageRoute(builder: (context) => MainScreen()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 8.0), // Altura reduzida
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                 ),
                 child: const Text('Logar'),
               ),
@@ -77,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 10.0),
             TextButton(
               onPressed: () {
+                // TODO: Implementar recuperação de senha
               },
               child: const Text(
                 'esqueci minha senha',
@@ -87,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                  MaterialPageRoute(builder: (context) => RegisterScreen()),
                 );
               },
               child: const Text(
