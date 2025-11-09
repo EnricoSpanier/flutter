@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 // 15. Tela de Gerenciamento de Eventos
 class ManageEventsScreen extends StatefulWidget {
   const ManageEventsScreen({super.key});
