@@ -1,3 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+
+import 'telaHomePage.dart';            // HomePageData
+import 'telaPesquisarEvento.dart';     // SearchEventScreen
+import 'telaEdicaoPerfil.dart';        // EditProfileScreen
+import 'telaCriacaoEvento.dart';       // CreateEventScreen
+import 'telaInscriçãoEvento.dart';     // EventRegistrationScreen
+import 'telaGerenciamentoEvento.dart'; // ManageEventsScreen
+
 // 11. Tela Principal (após login)
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -20,7 +31,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SearchEventScreen()),
+                  MaterialPageRoute(builder: (context) => SearchEventScreen()),
                 );
               },
               child: const Text(
@@ -33,7 +44,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ManageEventsScreen()),
+                  MaterialPageRoute(builder: (context) => ManageEventsScreen()),
                 );
               },
               child: const Text(
@@ -49,12 +60,12 @@ class MainScreen extends StatelessWidget {
               if (value == 'Editar Perfil') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const EditProfileScreen()),
+                  MaterialPageRoute(builder: (context) => EditProfileScreen()),
                 );
               } else if (value == 'Criar Evento') {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const CreateEventScreen()),
+                  MaterialPageRoute(builder: (context) => CreateEventScreen()),
                 );
               } else if (value == 'Deslogar') {
                 Navigator.pushReplacement(
@@ -165,18 +176,15 @@ class MainScreen extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: const Icon(Icons.timer_outlined, size: 28),
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                       ),
                       IconButton(
                         icon: const Icon(Icons.share, size: 28),
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                       ),
                       IconButton(
                         icon: const Icon(Icons.star_border, size: 28),
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                       ),
                     ],
                   ),
@@ -200,8 +208,7 @@ class MainScreen extends StatelessWidget {
                       const SizedBox(width: 8.0),
                       IconButton(
                         icon: const Icon(Icons.more_vert, size: 28),
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                       ),
                     ],
                   ),
@@ -248,7 +255,7 @@ class MainScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const EventRegistrationScreen(
+                    builder: (context) => EventRegistrationScreen(
                       event: {
                         'title': 'OPERAÇÃO TROIA III',
                         'date': '25/10/2025',
